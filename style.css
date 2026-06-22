@@ -72,37 +72,65 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 25px;
   font-size: 1.2rem;
   color: #ff4081;
-  margin-top: 40px;
+  margin-top: 30px;
   text-align: center;
 }
 
 .mensagem p {
   max-width: 600px;
   line-height: 1.6;
+  font-weight: 500;
 }
 
-/* Estilo para as imagens em grid horizontal com quebra automática */
-.foto-amor {
-  width: 100px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  margin: 10px;
-}
-
-/* Agrupa as imagens horizontalmente com quebra */
-.mensagem img.foto-amor {
-  display: inline-block;
-}
-
+/* CONTAINER DA GALERIA - Centraliza tudo perfeitamente */
 .galeria {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
+  justify-content: center; /* Centraliza as fotos da última linha */
+  align-items: center;
+  gap: 16px;
   margin-top: 20px;
+  width: 100%;
+}
+
+/* FOTOS E VÍDEOS - Padronização absoluta de tamanho */
+.foto-amor {
+  width: 185px;          /* Ajuste leve na largura para melhor proporção */
+  height: 195px;         /* Altura fixa padrão retrato */
+  object-fit: cover;     /* Enquadra o centro da imagem/vídeo sem distorcer */
+  border-radius: 16px;   /* Bordas um pouco mais arredondadas e modernas */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;        /* Força tanto img quanto video a renderizarem corretamente */
+  background-color: #f0f0f0; /* Fundo cinza bem claro caso a mídia demore a carregar */
+}
+
+/* Garante que o elemento de vídeo obedeça estritamente às regras da imagem */
+video.foto-amor {
+  object-position: center;
+}
+
+/* EFEITO INTERATIVO - Zoom suave ao passar o mouse */
+.foto-amor:hover {
+  transform: scale(1.06);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.btn-musica {
+  background-color: #28a745; /* Ou a cor que preferir, como o verde do emoji */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 15px 0;
+  transition: transform 0.2s;
+}
+
+.btn-musica:hover {
+  transform: scale(1.05); /* Dá um leve zoom ao passar o mouse */
 }

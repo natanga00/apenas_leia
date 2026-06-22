@@ -11,51 +11,98 @@
     <h1>Deseja saber uma coisa?</h1>
     <div class="botoes">
       <button id="sim">Sim</button>
-      <button id="nao">Tente clicar aqui primeiro:Não</button>
+      <button id="nao">Clique aqui primeiro pra se divertir: Não</button>
     </div>
     <div class="mensagem" id="mensagem"></div>
   </div>
 
-    <audio id="musica" loop>
-      <source src="Quero te Ter Por Perto.mp3" type="audio/mpeg">
-    </audio>
+  <audio id="musica" loop>
+    <source src="Rosa de Saron - Nova Primavera.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     const botaoSim = document.getElementById("sim");
     const botaoNao = document.getElementById("nao");
     const mensagem = document.getElementById("mensagem");
+    const musica = document.getElementById("musica");
 
-    botaoSim.addEventListener("click", () =>{
+    // CONFIGURAÇÃO DO TRECHO DA MÚSICA (em segundos)
+    const tempoInicio = 0; // Tempo que a música vai começar
+    const tempoFim = 90;    // Tempo que a música vai parar (se não pausarem antes)
+    let monitorandoMusica = false;
+
+    botaoSim.addEventListener("click", () => {
       botaoSim.style.display = "none";
       botaoNao.style.display = "none";
-      document.getElementById("musica").play();
 
+      // Insere o texto, as fotos e o NOVO BOTÃO de dar play
       mensagem.innerHTML = `
-        <p>Neste dia dos namorados, apesar de ainda não ter feito o pedido oficial, eu queria que você soubesse de uma coisa<br>
-          É você, sim, é você<br>
-          O fim de todo desalinho, o florescer do meu caminho.
-          O fim de toda despedida, o meu amor pra toda vida<br>
-          Você é a minha melhor escolha, minha gatinha! 💚💍</p>
-        <div class="galeria"> 
-        <img src="IMG-20250608-WA0007.jpg" alt="Foto do casal" class="foto-amor">
-        <img src="IMG-20250608-WA0029.jpg" alt="Foto do casal" class="foto-amor">
-        <img src="IMG-20250606-WA0062.jpg" alt="Foto do casal" class="foto-amor">
-        <img src="IMG-20250606-WA0064.jpg" alt="Foto do casal" class="foto-amor">
-        <img src="IMG-20250531-WA0106.jpg" alt="Foto do casal" class="foto-amor">
-        <img src="IMG_0178.jpg" alt="Foto do casal" class="foto-amor">
-        <img src="SBH24-199 (1).jpg" alt="Foto do casal" class="foto-amor">
-        <img src="IMG-20240907-WA0009.jpg" alt="Foto do casal" class="foto-amor">
-        <img src="IMG-20250608-WA0036.jpg" alt="Foto do casal" class="foto-amor">
-        <img src="IMG-20240907-WA0010.jpg" alt="Foto do casal" class="foto-amor">
-        <img src="IMG-20240907-WA0069.jpg" alt="Foto do casal" class="foto-amor">
-        <img src="IMG-20250525-WA0094.jpg" alt="Foto do casal" class="foto-amor">
-        <img src="Screenshot_2025-06-03-00-21-53-039_com.whatsapp.jpg" alt="Foto do casal" class="foto-amor">
+        <p>SEI QUE SOMOS APENAS AMIGOS, MAS EU GOSTARIA QUE SOUBESSE DE UMA COISA </p>
 
-        <video src="VID-20250608-WA0030.mp4" alt="Foto do casal" class="foto-amor" autoplay loop muted playsinline></video>
+      <p> Já faz um tempo que você não sai do meu pensamento. 
+          No silêncio do meu quarto, é a sua voz que eu escuto, 
+          e esse seu jeito inocente e único me conquistou por completo.
+      </p>
+
+      <p> 
+        Eu sei que você já sofreu muito, que está cansada de se envolver e se machucar com promessas vazias 
+        de quem prometeu o mundo e só trouxe decepção. Sei que errar faz parte do jogo da vida, 
+        mas, comigo, o final dessa história vai ser diferente. Hoje não vai ser assim.
+      </p>
+
+      <p>
+        Deixa o medo de lado e vem comigo. Eu conheço um lugar secreto, só nosso, onde podemos ver a lua e as estrelas lá fora. 
+        Eu te prometo, aqui e agora, que vou cuidar de você, te dar o meu melhor a cada pôr do sol e te proteger de tudo. 
+        Eu passei a vida inteira procurando alguém como você e, se depender de mim, 
+        eu vou te fazer esquecer o passado e te devolver, do jeito mais lindo, aquelas noites sem dormir.
+      </p> 
+        
+        <button id="controleMusica" class="btn-musica">🎵 Escutar Música</button>
+
+        <div class="galeria"> 
+          <img src="WhatsApp Image 2026-06-14 at 12.43.45.jpeg" alt="Foto do casal" class="foto-amor">
+          <img src="WhatsApp Image 2026-06-15 at 18.35.45.jpeg" alt="Foto do casal" class="foto-amor">
+          <img src="WhatsApp Image 2026-06-15 at 21.42.31.jpeg" class="foto-amor">
+          <img src="WhatsApp Image 2026-06-15 at 21.42.32.jpeg" alt="Foto do casal" class="foto-amor">
+          <img src="WhatsApp Image 2026-06-15 at 21.42.34.jpeg" alt="Foto do casal" class="foto-amor">
+          <img src="WhatsApp Image 2026-06-15 at 21.42.37.jpeg" alt="Foto do casal" class="foto-amor">
         </div>
       `;
+
+      // Cria o evento do novo botão que acabou de ser gerado na tela
+      const btnMusica = document.getElementById("controleMusica");
+
+      btnMusica.addEventListener("click", () => {
+        if (musica.paused) {
+          // Se for a primeira vez que dá play, define o tempo inicial do trecho
+          if (musica.currentTime < tempoInicio || musica.currentTime >= tempoFim) {
+            musica.currentTime = tempoInicio;
+          }
+          
+          musica.play();
+          btnMusica.innerText = "⏸️ Pausar Música";
+
+          // Ativa o monitoramento do fim do trecho (apenas uma vez)
+          if (!monitorandoMusica) {
+            musica.addEventListener("timeupdate", function pararNoTrecho() {
+              if (musica.currentTime >= tempoFim) {
+                musica.pause();
+                btnMusica.innerText = "🎵 Escutar Música";
+                musica.removeEventListener("timeupdate", pararNoTrecho);
+                monitorandoMusica = false;
+              }
+            });
+            monitorandoMusica = true;
+          }
+        } else {
+          // Se já estiver tocando, o botão pausa a música
+          musica.pause();
+          btnMusica.innerText = "🎵 Escutar Música";
+        }
+      });
     });
 
+    // Lógica do botão "Não" fugir
     botaoNao.addEventListener("mouseover", () => {
       const x = Math.random() * (window.innerWidth - 100);
       const y = Math.random() * (window.innerHeight - 100);
