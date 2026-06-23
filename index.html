@@ -35,8 +35,10 @@
       botaoSim.style.display = "none";
       botaoNao.style.display = "none";
 
-      // Insere o texto, as fotos e o NOVO BOTÃO de dar play
+      // Insere o NOVO BOTÃO de dar play, o texto e as fotos
       mensagem.innerHTML = `
+        <button id="controleMusica" class="btn-musica">🎵 Tocar a Música</button>
+
         <p>SEI QUE SOMOS APENAS AMIGOS, MAS EU GOSTARIA QUE SOUBESSE DE UMA COISA </p>
 
       <p> Já faz um tempo que você não sai do meu pensamento. 
@@ -62,9 +64,7 @@
           O florescer do meu caminho
           É você, sim é você
           O fim de toda despedida
-      </P>
-        
-        <button id="controleMusica" class="btn-musica">🎵 Escutar Música</button>
+      </p>
 
         <div class="galeria"> 
           <img src="WhatsApp Image 2026-06-14 at 12.43.45.jpeg" alt="Foto do casal" class="foto-amor">
