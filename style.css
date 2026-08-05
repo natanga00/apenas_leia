@@ -136,7 +136,12 @@ video.foto-amor {
 }
 
 .meu-video {
-  width: 400px;
-  max-width: 100%;
-  height: auto;
+  width: 185px;          /* Ajuste leve na largura para melhor proporção */
+  height: 195px;         /* Altura fixa padrão retrato */
+  object-fit: cover;     /* Enquadra o centro da imagem/vídeo sem distorcer */
+  border-radius: 16px;   /* Bordas um pouco mais arredondadas e modernas */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;        /* Força tanto img quanto video a renderizarem corretamente */
+  background-color: #f0f0f0; /* Fundo cinza bem claro caso a mídia demore a carregar */
 }
