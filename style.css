@@ -134,3 +134,9 @@ video.foto-amor {
 .btn-musica:hover {
   transform: scale(1.05); /* Dá um leve zoom ao passar o mouse */
 }
+
+.meu-video {
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+}
